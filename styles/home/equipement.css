@@ -1,0 +1,121 @@
+.titre-and-equipement {
+    background-color: rgba(0, 0, 0, 0.800);
+}
+
+.list-equipement {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.equipement {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 22%; /* Ajustez la largeur selon vos besoins */
+    margin-bottom: 1%;
+}
+
+.titre-equipement {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 200%;
+    margin-bottom: 1%;
+    padding-top: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.trait {
+    content: "";
+    display: block;
+    align-items: center;
+    width: 30%;
+    margin-left: 35%;
+    height: 4px;
+    margin-bottom: 4%;
+    background-color: rgb(212, 135, 34);
+}
+
+.img-list-equip {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+.btn-equipement {
+    width: 50%;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    color: rgba(212, 135, 34, 0.8);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 4%;
+    margin-bottom: 3%;
+}
+
+.btn-equipement:hover {
+    box-shadow: 0 8px 12px rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+    color: rgb(212, 135, 34);
+}
+
+.btn-equipement:active {
+    background-color: rgba(0, 0, 0, 0.500);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transform: translateY(2px);
+}
+
+.voir-plus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 22%;
+}
+
+.text-equip-plus {
+   font-size: 56px;
+   margin-bottom: 10%;
+    color: white;
+}
+
+.text-voirplus {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+    padding: 15px 32px;
+    background-color: rgba(255, 255, 255);
+    border-radius: 12px;
+}
+
+.fleche-voirplus {
+    display: flex;
+    justify-content: center;
+    margin-left: 10px;
+    transition: transform 0.3s ease, fill 0.3s ease; 
+}
+
+.text-voirplus:hover .fleche-voirplus {
+    transform: translateX(5px);
+}
+
+.text-voirplus:hover .bi-arrow-right {
+    fill: rgb(212, 135, 34);
+}
+
+span {
+    color: rgb(212, 135, 34);
+}
