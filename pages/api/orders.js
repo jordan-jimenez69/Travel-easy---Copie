@@ -1,7 +1,7 @@
 import { mongooseConnect } from '@/lib/mongoose';
 import Order from '@/models/Order';
 import Stripe from 'stripe';
-import { Produit } from '@/models/Produit';
+import { Produit } from '@/models/produit';
 
 const stripe = new Stripe(process.env.STRIPE_SK);
 
