@@ -49,10 +49,12 @@ export const UserProvider = ({ children }) => {
   };
 
   const logout = async () => {
+    if (window.confirm("Êtes-vous sûr de vouloir vous déconnecter ?")) {
     await fetch('/api/logout', { method: 'POST' });
     Cookies.remove('userId');
     setUser(null);
     router.push('/login');
+  }
   };
 
   return (
