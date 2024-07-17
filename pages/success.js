@@ -1,15 +1,21 @@
 import Link from 'next/link';
+import { FaCheckCircle } from 'react-icons/fa';
 
-export default function Success() {
+const Success = () => {
     return (
-        <div>
-            <h1>Paiement réussi !</h1>
-            <p>Merci pour votre achat.</p>
-            <Link href="/compte">
-                <button style={{ padding: '10px 20px', marginTop: '20px' }}>
-                    Retour au Menu Compte
-                </button>
+        <div className="success-container">
+            <div className="success-icon">
+                <FaCheckCircle size={100} color="green" />
+            </div>
+            <h1 className="success-title">Merci pour votre commande !</h1>
+            <p className="success-message">
+                Votre commande a été passée avec succès. Nous vous enverrons un email de confirmation sous peu.
+            </p>
+            <Link href="/" passHref>
+                <button className="success-button">Retour à l'accueil</button>
             </Link>
         </div>
     );
-}
+};
+
+export default Success;
