@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 export default function Accueil() {
@@ -11,9 +12,9 @@ export default function Accueil() {
                     </div>
 
                     <div className="btn-home-contener">
-                        <button className="btn-home">
+                        <Link href={"/boutique"} className="btn-home">
                             Commencer Maintenant !
-                        </button>
+                        </Link>
                     </div>
 
                 </div>

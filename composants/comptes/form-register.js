@@ -35,7 +35,7 @@ const RegisterForm = () => {
       const data = await response.json();
 
       if (response.ok) {
-        setSuccess('Inscription réussie. Vous pouvez maintenant vous connecter.');
+        setSuccess(window.confirm("Compte créer avec succès ! Vous allez être redirigé sur la page connexion."));
         setError('');
         setFirstname('');
         setName('');

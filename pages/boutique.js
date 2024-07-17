@@ -12,8 +12,8 @@ export default function boutique({ newCategories }) {
         <Navbar />
       </div>
 
-      <div className="container">
-        <h1>Boutique</h1> <br />
+      <div className="title-boutique">
+        <h1 className="title">Boutique</h1> 
       </div>
 
       <div>
