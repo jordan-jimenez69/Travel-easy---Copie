@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Link from "next/link";
+import { useRouter } from 'next/router';
 
 const RegisterForm = () => {
   const [firstname, setFirstname] = useState('');
@@ -8,6 +9,8 @@ const RegisterForm = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+
+  const router = useRouter();
 
   const validatePassword = (password) => {
     const passwordRegex = /^(?=.*[A-Z]).{6,}$/;
@@ -34,8 +37,11 @@ const RegisterForm = () => {
 
       const data = await response.json();
 
-      if (response.ok) {
-        setSuccess(window.confirm("Compte créer avec succès ! Vous allez être redirigé sur la page connexion."));
+       if (response.ok) {
+        const userConfirmed = window.confirm("Compte créé avec succès ! Vous allez être redirigé vers la page de connexion.");
+        if (userConfirmed) {
+          router.push('/login');
+        }
         setError('');
         setFirstname('');
         setName('');
