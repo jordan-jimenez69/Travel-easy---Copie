@@ -1,26 +1,44 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import UserContext from '@/contexts/UserContext';
-import { useRouter } from 'next/router';
 
 export default function Compte() {
-    const { user, logout } = useContext(UserContext);
-    const router = useRouter();
+    const { user } = useContext(UserContext);
+    const [orders, setOrders] = useState([]);
 
     useEffect(() => {
-    }, [user, router]);
-  
-    if (!user) {
-      return null;
-    }
+        const fetchOrders = async () => {
+            if (user) {
+                const response = await fetch(`/api/userOrders?userId=${user._id}`);
+                if (response.ok) {
+                    const ordersData = await response.json();
+                    setOrders(ordersData);
+                }
+            }
+        };
+
+        fetchOrders();
+    }, [user]);
+
+    if (!user) return null;
+
 
     return (
-        <main>
             <div className="container">
                 <h1 className="title">Mon Compte</h1>
                 <p className="welcome-text">Bienvenue, {user.firstname} {user.name}</p>
-                <button className="logout-button" onClick={logout}>Déconnexion</button>
-            </div>
-        </main>
-    );
-}
 
+                <h2>Mes Commandes</h2>
+            {orders.length === 0 ? (
+                <p>Aucune commande trouvée.</p>
+            ) : (
+                <ul>
+                    {orders.map(order => (
+                        <li key={order._id}>
+                            Commande ID: {order._id}, Date: {order.createdAt}
+                        </li>
+                    ))}
+                </ul>
+            )}
+        </div>
+    );
+};

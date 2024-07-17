@@ -1,14 +1,21 @@
 import { CartContext } from '@/contexts/CartContext';
+import UserContext from '@/contexts/UserContext';
 import React, { useContext, useState } from 'react';
 
 const CheckoutForm = () => {
-    const { cartProducts, clearCart  } = useContext(CartContext);
+    const { cartProducts, clearCart } = useContext(CartContext);
+    const { user } = useContext(UserContext);
     const [firstname, setFirstname] = useState('');
     const [name, setName] = useState('');
     const [ville, setVille] = useState('');
     const [codePost, setCodePost] = useState('');
     const [adresse, setAdresse] = useState('');
     const [pays, setPays] = useState('');
+
+    // Fonction pour calculer le total
+    const calculateTotal = () => {
+        return cartProducts.reduce((total, product) => total + (product.price * product.quantity), 0);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -18,7 +25,12 @@ const CheckoutForm = () => {
             return;
         }
 
-        const products = cartProducts.map(product => product._id);
+        const products = cartProducts.map(product => ({
+            _id: product._id,
+            name: product.name,
+            price: product.price,
+            quantity: product.quantity
+        }));
 
         const orderData = {
             firstname,
@@ -27,7 +39,9 @@ const CheckoutForm = () => {
             codePost,
             adresse,
             pays,
-            products
+            products,
+            userId: user._id,
+            total: calculateTotal()
         };
 
         try {
@@ -42,7 +56,7 @@ const CheckoutForm = () => {
             if (response.ok) {
                 const data = await response.json();
                 window.location.href = data.url;
-                localStorage.clear();
+                clearCart();
             } else {
                 const errorData = await response.json();
                 console.error('Error creating order:', errorData);
@@ -53,10 +67,10 @@ const CheckoutForm = () => {
     };
 
     return (
-        <div className="chekout-container">
-            <h2>Vos Information</h2>
+        <div className="checkout-container">
+            <h2>Vos Informations</h2>
             <form onSubmit={handleSubmit}>
-                <div className="chekout-form-group">
+                <div className="checkout-form-group">
                     <label htmlFor="firstname">Prénom:</label>
                     <input
                         type="text"
@@ -66,7 +80,7 @@ const CheckoutForm = () => {
                         required
                     />
                 </div>
-                <div className="chekout-form-group">
+                <div className="checkout-form-group">
                     <label htmlFor="name">Nom:</label>
                     <input
                         type="text"
@@ -76,7 +90,7 @@ const CheckoutForm = () => {
                         required
                     />
                 </div>
-                <div className="chekout-form-group">
+                <div className="checkout-form-group">
                     <label htmlFor="ville">Ville:</label>
                     <input
                         type="text"
@@ -86,7 +100,7 @@ const CheckoutForm = () => {
                         required
                     />
                 </div>
-                <div className="chekout-form-group">
+                <div className="checkout-form-group">
                     <label htmlFor="codePost">Code Postal:</label>
                     <input
                         type="text"
@@ -96,7 +110,7 @@ const CheckoutForm = () => {
                         required
                     />
                 </div>
-                <div className="chekout-form-group">
+                <div className="checkout-form-group">
                     <label htmlFor="adresse">Adresse Postale:</label>
                     <input
                         type="text"
@@ -106,7 +120,7 @@ const CheckoutForm = () => {
                         required
                     />
                 </div>
-                <div className="chekout-form-group">
+                <div className="checkout-form-group">
                     <label htmlFor="pays">Pays:</label>
                     <input
                         type="text"
@@ -116,8 +130,9 @@ const CheckoutForm = () => {
                         required
                     />
                 </div>
-                <button type="submit" className="register-btn btn-primary">Continuer vers payement</button>
+                <button type="submit" className="register-btn btn-primary">Continuer vers paiement</button>
             </form>
+            <h3 className='total-prod-quant'>Total: {calculateTotal().toFixed(2)}€</h3> {}
         </div>
     );
 };

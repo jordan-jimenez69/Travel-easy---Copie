@@ -11,7 +11,7 @@ const Cancel = () => {
             <p className="cancel-message">
                 Votre commande a été annulée. Si vous avez des questions, n'hésitez pas à nous contacter.
             </p>
-            <Link href="/" passHref>
+            <Link href="/panier">
                 <button className="cancel-button">Retour à l'accueil</button>
             </Link>
         </div>

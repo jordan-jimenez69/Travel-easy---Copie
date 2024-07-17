@@ -10,17 +10,21 @@ export default async function handler(req, res) {
         try {
             await mongooseConnect();
 
-            const { firstname, name, ville, codePost, adresse, pays, products } = req.body;
+            const { userId, firstname, name, ville, codePost, adresse, pays, products } = req.body;
 
-            console.log("Request body:", req.body);
+            if (!userId) {
+                return res.status(400).json({ error: 'L\'ID de l\'utilisateur est requis.' });
+            }
 
-            const uniqueIds = [...new Set(products)];
-            const productsInfos = await Produit.find({ _id: { $in: uniqueIds } });
+            const line_items = [];
+            const productIds = products.map(p => p._id);
 
-            let line_items = [];
-            for (const productId of uniqueIds) {
-                const productInfo = productsInfos.find(p => p._id.toString() === productId);
-                const quantity = products.filter(id => id === productId).length;
+            const productsInfos = await Produit.find({ _id: { $in: productIds } });
+
+            for (const product of products) {
+                const productInfo = productsInfos.find(p => p._id.toString() === product._id);
+                const quantity = product.quantity;
+
                 if (quantity > 0 && productInfo) {
                     line_items.push({
                         price_data: {
@@ -33,17 +37,20 @@ export default async function handler(req, res) {
                 }
             }
 
+            // Créer la nouvelle commande avec userId
             const newOrder = new Order({
+                userId,
                 firstname,
                 name,
                 ville,
                 codePost,
                 adresse,
                 pays,
-                products: uniqueIds
+                products: productIds,
             });
             await newOrder.save();
 
+            // Créer une session Stripe
             const session = await stripe.checkout.sessions.create({
                 payment_method_types: ['card'],
                 line_items,
@@ -54,10 +61,10 @@ export default async function handler(req, res) {
 
             res.status(201).json({ url: session.url });
         } catch (error) {
-            console.error("Error creating Stripe session:", error);
-            res.status(500).json({ error: 'Error creating order', details: error.message });
+            console.error("Erreur lors de la création de la session Stripe :", error);
+            res.status(500).json({ error: 'Erreur lors de la création de la commande', details: error.message });
         }
     } else {
-        res.status(405).json({ error: 'Method Not Allowed' });
+        res.status(405).json({ error: 'Méthode non autorisée' });
     }
 }

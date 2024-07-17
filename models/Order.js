@@ -1,6 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 
 const OrderSchema = new Schema({
+    userId: { type: String, required: true },
     firstname: { type: String, required: true },
     name: { type: String, required: true },
     ville: { type: String, required: true },
