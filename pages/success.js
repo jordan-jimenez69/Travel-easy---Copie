@@ -12,7 +12,7 @@ const Success = () => {
                 Votre commande a ete passee avec succes. Nous vous enverrons un email de confirmation sous peu.
             </p>
             <Link href="/compte">
-                <button className="success-button">Retour à l'accueil</button>
+                <button className="success-button">Retour accueil</button>
             </Link>
         </div>
     );

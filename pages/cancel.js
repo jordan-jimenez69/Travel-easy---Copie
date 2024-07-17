@@ -9,10 +9,10 @@ const Cancel = () => {
             </div>
             <h1 className="cancel-title">Commande annulee</h1>
             <p className="cancel-message">
-                Votre commande a ete annulee. Si vous avez des questions, n'hesitez pas à nous contacter.
+                Votre commande a ete annulee. Si vous avez des questions, hesitez pas à nous contacter.
             </p>
             <Link href="/panier">
-                <button className="cancel-button">Retour à l'accueil</button>
+                <button className="cancel-button">Retour accueil</button>
             </Link>
         </div>
     );
