@@ -9,10 +9,10 @@ const Success = () => {
             </div>
             <h1 className="success-title">Merci pour votre commande !</h1>
             <p className="success-message">
-                Votre commande a ete passee avec succes. Nous vous enverrons un email de confirmation sous peu.
+                Votre commande a ete passée avec succès.
             </p>
             <Link href="/compte">
-                <button className="success-button">Retour accueil</button>
+                <button className="success-button">Retour a votre compte</button>
             </Link>
         </div>
     );
