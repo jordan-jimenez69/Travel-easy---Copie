@@ -9,7 +9,7 @@ export default function Equipement() {
                     <h3>Nos équipements</h3>
                 </div>
 
-                <div class="trait"></div>
+                <div className="trait"></div>
 
                 <section className="list-equipement">
 
@@ -28,9 +28,6 @@ export default function Equipement() {
                         <Link className="btn-equipement" href={"/categorie/6634eecc56190cda6353ef0e"}>Acheter maintenant</Link>
                     </div>
 
-                </section>
-
-                <section className="list-equipement">
                     <div className="equipement">
                         <img className="img-list-equip" src="lit.jpg" />
                         <Link className="btn-equipement" href={"/categorie/6634eefd56190cda6353ef14"}>Acheter maintenant</Link>
