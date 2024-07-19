@@ -24,9 +24,6 @@ const Page_Panier = () => {
         return cartProducts.reduce((total, product) => total + product.price * product.quantity, 0);
     };
 
-    const handleCheckout = () => {
-        router.push('/commander');
-    };
 
     return (
         <div className="cart-container">

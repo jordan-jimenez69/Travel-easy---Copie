@@ -187,11 +187,6 @@
   box-shadow: 0 4;
 }
 
-@media (max-width: 1640px) {
-
-}
-
-
 @media (max-width: 540px) {
 
   .CategoriesGrid {
