@@ -60,9 +60,10 @@ const CategoryProducts = ({ initialProducts, categoryName, categoryId, propertie
   return (
     <div>
       <Navbar />
+      <h1 className='Title-Product'>{categoryName}</h1>
       <div className="Filters">
-        <h1 className='Title-Product'>Produits pour la catégorie: {categoryName}</h1>
         {properties.map(property => (
+
           <div key={property.name} className="Filter">
             <h3>{property.name}</h3>
             <select
