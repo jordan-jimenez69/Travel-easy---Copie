@@ -6,18 +6,11 @@ export default function Home() {
   return (
 
     <>
-      <div className="">
-        <Navbar />
-      </div>
+      <Navbar />
 
-      <div className="">
-        <Accueil />
-      </div>
+      <Accueil />
 
-      <div className="">
-        <Equipement />
-      </div>
-
+      <Equipement />
     </>
   );
 }

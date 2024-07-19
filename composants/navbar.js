@@ -36,12 +36,12 @@ export default function Navbar() {
               <li className="li-navbar">
                 <Link href="/compte">Mon Compte</Link>
               </li>
-              <li className="li-navbar">
+              <li className="li-navbar-btnde">
                 <a onClick={logout} style={{ cursor: 'pointer' }}>Déconnexion</a>
               </li>
             </>
           ) : (
-            <li className="li-navbar">
+            <li className="li-navbar-btnco">
               <Link href="/login">Connexion</Link>
             </li>
           )}

@@ -8,6 +8,7 @@
   color: white;
   padding: 0 20px;
   box-sizing: border-box;
+  z-index: 10;
 }
 
 .logo-navbar {
@@ -24,6 +25,17 @@
   margin: 0;
   padding: 0;
 }
+
+.li-navbar-btnco a:hover {
+  color: rgb(212, 135, 34);
+
+}
+
+.li-navbar-btnde a:hover {
+  color: rgb(212, 135, 34);
+
+}
+
 
 .liste-navbar ul a {
   margin-right: 20px;
@@ -70,13 +82,43 @@
     flex-direction: column;
     width: 100%;
     align-items: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    gap: 20px;
   }
 
   .liste-navbar ul a {
     margin: 10px 0;
+    padding: 10px 0;
+    width: 100%;
+    text-align: center;
   }
 
   .menu-burger {
     display: flex;
+  }
+
+  .navbar {
+    position: relative;
+  }
+  
+  .li-navbar-btnco {
+    background-color: blue;
+    padding: 10px 10px 10px;
+    border-radius: 5%;
+  }
+  
+  .li-navbar-btnco:hover {
+    background-color: darkblue;
+  }
+  
+  .li-navbar-btnde {
+    padding: 10px 10px 10px;
+    border-radius: 5%;
+    background-color: red;
+  }
+  
+  .li-navbar-btnde:hover {
+    background-color: darkred;
   }
 }
