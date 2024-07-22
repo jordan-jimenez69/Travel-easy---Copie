@@ -6,29 +6,37 @@ import { useRouter } from 'next/router';
 
 const ProductDetail = ({ product }) => {
     const { addToCart } = useCart();
-    
+
     const router = useRouter();
-    
+
     const handleAddToCart = () => {
         addToCart(product);
         router.push('/panier');
     };
 
     return (
-        <div>
+        <>
             <div>
                 <Navbar />
             </div>
 
             <div className='product-details'>
-                <h1 className='product-title'>Détails du produit: {product.title}</h1>
-                <p className='product-description'>Description: {product.description}</p>
-                <p className='product-price'>Prix: {product.price}€</p>
-                <button 
-                    className='button-product'
-                    onClick={handleAddToCart}>Ajouté au panier</button>
+                <h1 className='product-title'>{product.title}</h1>
+                <div className='decription-img-product'>
+                    {product.images && product.images.length > 0 && (
+                        <img src={product.images[0]} alt={product.title} className="product-image-detail" />
+                    )}
+                    <p className='product-description'>Description : {product.description}</p>
+                </div>
+
+                <div className='product-price-btn'>
+                    <p className='product-price-detail'>Prix: {product.price}€</p>
+                    <button
+                        className='button-product-detail'
+                        onClick={handleAddToCart}>Ajouté au panier</button>
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 
