@@ -19,6 +19,11 @@
     margin-bottom: 1%;
 }
 
+.equipement h1{
+    color: #FFF;
+    margin-bottom: 1%;
+}
+
 .titre-equipement {
     color: rgba(255, 255, 255, 0.8);
     font-size: 200%;
