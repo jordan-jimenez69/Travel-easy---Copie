@@ -33,9 +33,11 @@
 
 .li-navbar-btnde a:hover {
   color: rgb(212, 135, 34);
-
 }
 
+.li-navbar-btnreg a:hover{
+  color: rgb(212, 135, 34);
+} 
 
 .liste-navbar ul a {
   margin-right: 20px;
@@ -110,6 +112,16 @@
   
   .li-navbar-btnco:hover {
     background-color: darkblue;
+  }
+
+  .li-navbar-btnreg {
+    background-color: rgba(212, 135, 34, 0.9);
+    padding: 10px 10px 10px;
+    border-radius: 5%;
+  }
+  
+  .li-navbar-btnreg:hover {
+    background-color: rgb(212, 135, 34);
   }
   
   .li-navbar-btnde {

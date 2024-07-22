@@ -41,9 +41,14 @@ export default function Navbar() {
               </li>
             </>
           ) : (
-            <li className="li-navbar-btnco">
-              <Link href="/login">Connexion</Link>
-            </li>
+            <ul>
+              <li className="li-navbar-btnco">
+                <Link href="/login">Connexion</Link>
+              </li>
+              <li className="li-navbar-btnreg">
+                <Link href="/register">Inscription</Link>
+              </li>
+            </ul>
           )}
         </ul>
       </div>
