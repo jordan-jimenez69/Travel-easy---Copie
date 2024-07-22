@@ -1,17 +1,16 @@
 import Navbar from '@/composants/navbar';
 import Compte from '@/composants/comptes/compte';
+import Footer from '@/composants/footer';
 
-export default function Compte_Page () {
+export default function Compte_Page() {
 
   return (
     <>
-      <div>
-        <Navbar />
-      </div>
+      <Navbar />
 
-      <div>
-        <Compte />
-      </div>
+      <Compte />
+
+      <Footer />
     </>
   );
 };

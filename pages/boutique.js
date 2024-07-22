@@ -1,4 +1,5 @@
 import NewCategories from "@/composants/boutiques/NewCategories";
+import Footer from "@/composants/footer";
 import Navbar from "@/composants/navbar";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Categorie } from "@/models/categorie";
@@ -19,6 +20,8 @@ export default function boutique({ newCategories }) {
       <div>
         <NewCategories categories={newCategories} />
       </div>
+
+      <Footer />
 
     </>
   );

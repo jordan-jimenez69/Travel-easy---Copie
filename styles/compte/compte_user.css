@@ -1,7 +1,14 @@
+.compte-page-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .container-compte {
     padding: 20px;
+    width: 90%;
     max-width: 800px;
-    margin: auto;
+    margin-bottom: 8%;
     background-color: #f9f9f9;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -22,40 +29,10 @@
     color: #555;
 }
 
-.logout-button {
-    background-color: rgba(212, 135, 34, 0.9);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1em;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+.ordersTitle {
+    margin-bottom: 2%;
 }
 
-.logout-button:hover {
-    background-color: rgb(212, 135, 34);
-}
-
-.logout-button:hover {
-    box-shadow: 0 8px 12px rgba(255, 255, 255, 0.5);
-    transform: translateY(-2px);
-}
-
-.logout-button:active {
-    background-color: rgba(0, 0, 0, 0.500);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    transform: translateY(2px);
-}
-
-@media (max-width: 1520px) {
-    
-}
-
-@media (max-width: 540px) {
-
-}
-
-@media (max-width: 340px) {
-
+.orderItem {
+    margin-bottom: 2%;
 }
