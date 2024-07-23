@@ -40,7 +40,7 @@ export default function Equipement() {
                     <div className="equipement">
                         <h1>Vêtements</h1>
                         <img className="img-list-equip" src="blouson.jpg" />
-                        <Link className="btn-equipement" href={"/categorie/6634eed756190cda6353ef11"}>Acheter maintenant</Link>
+                        <Link className="btn-equipement" href={"/categorie/669e60757ef976adc14d938b"}>Acheter maintenant</Link>
                     </div>
 
                     <div className="equipement voir-plus">

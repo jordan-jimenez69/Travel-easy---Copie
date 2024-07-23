@@ -3,14 +3,36 @@ import { Produit } from '@/models/produit';
 import Navbar from '@/composants/navbar';
 import { useCart } from '@/contexts/CartContext';
 import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
 
 const ProductDetail = ({ product }) => {
     const { addToCart } = useCart();
-
     const router = useRouter();
+    const [selectedSize, setSelectedSize] = useState('');
+    const [sizes, setSizes] = useState([]);
+
+    useEffect(() => {
+        // Vérifie si le produit a une propriété "Taille" et assurez-vous que c'est un tableau
+        if (product.proprietes && Array.isArray(product.proprietes.Taille)) {
+            setSizes(product.proprietes.Taille);
+        } else if (product.proprietes && product.proprietes.Taille) {
+            // Si Taille n'est pas un tableau mais une seule valeur, convertissez-le en tableau
+            setSizes([product.proprietes.Taille]);
+        }
+    }, [product]);
 
     const handleAddToCart = () => {
-        addToCart(product);
+        if (product.categorie === '6634eed756190cda6353ef11' && !selectedSize) {
+            alert('Veuillez sélectionner une taille.');
+            return;
+        }
+        
+        const cartItem = {
+            ...product,
+            selectedSize
+        };
+
+        addToCart(cartItem);
         router.push('/panier');
     };
 
@@ -31,14 +53,32 @@ const ProductDetail = ({ product }) => {
 
                 <div className='product-price-btn'>
                     <p className='product-price-detail'>Prix: {product.price}€</p>
+                    {sizes.length > 0 && (
+                        <div>
+                            <label htmlFor="size">Taille :</label>
+                            <select
+                                id="size"
+                                value={selectedSize}
+                                onChange={(e) => setSelectedSize(e.target.value)}
+                            >
+                                <option value="">Sélectionnez une taille</option>
+                                {sizes.map((size, index) => (
+                                    <option key={index} value={size}>
+                                        {size}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                    )}
                     <button
                         className='button-product-detail'
-                        onClick={handleAddToCart}>Ajouté au panier</button>
+                        onClick={handleAddToCart}>Ajouter au panier</button>
                 </div>
             </div>
         </>
     );
 };
+
 
 export async function getServerSideProps(context) {
     const { productId } = context.params;
