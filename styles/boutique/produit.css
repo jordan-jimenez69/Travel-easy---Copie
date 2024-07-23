@@ -133,6 +133,38 @@
   justify-content: center;
 }
 
+.size {
+  display: flex;
+  margin-left: 2%;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.size label {
+  font-weight: bold;
+  color: #555;
+}
+
+.size select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  background-color: #fff;
+  color: #333;
+  transition: border-color 0.3s ease;
+}
+
+.size select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Option dans le sélecteur */
+.size option {
+  padding: 0.5rem;
+}
+
 @media (min-width: 551px) and (max-width: 1078px) {
 
   .ProductsGrid {

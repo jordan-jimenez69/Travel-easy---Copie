@@ -54,7 +54,7 @@ const ProductDetail = ({ product }) => {
                 <div className='product-price-btn'>
                     <p className='product-price-detail'>Prix: {product.price}€</p>
                     {sizes.length > 0 && (
-                        <div>
+                        <div className='size'>
                             <label htmlFor="size">Taille :</label>
                             <select
                                 id="size"
