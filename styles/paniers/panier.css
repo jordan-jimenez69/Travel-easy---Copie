@@ -152,6 +152,27 @@
     color: #3d3d3d;
 }
 
+.taille-chaussure-edit {
+    margin-top: 2%;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.taille-chaussure-edit label {
+    font-weight: bold;
+    color: #555;
+  }
+
+  .taille-chaussure-edit select {
+    padding: 0.3rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    background-color: #fff;
+    color: #333;
+    transition: border-color 0.3s ease;
+  }
 
 @media (max-width: 1520px) {
     .cart-item {

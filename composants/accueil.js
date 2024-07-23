@@ -3,7 +3,6 @@ import React from "react";
 
 export default function Accueil() {
     return (
-        <main>
             <div className="background-container">
                 <div className="text-home">
                     <div className="titre-overlay">
@@ -19,6 +18,5 @@ export default function Accueil() {
 
                 </div>
             </div>
-        </main>
     );
 }
