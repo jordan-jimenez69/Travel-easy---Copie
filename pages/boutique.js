@@ -8,14 +8,16 @@ import { useEffect, useState } from "react";
 
 export default function Boutique({ newCategories }) {
   const [categories, setCategories] = useState(null);
+  const [loading, setLoading] = useState(true); // Ajout de l'état de chargement
 
   useEffect(() => {
-    // Simule un délai de chargement pour voir le loader
+    // Simuler un délai de chargement pour observer le loader
     const timer = setTimeout(() => {
       setCategories(newCategories);
-    }, 500); // Ce délai simule le temps de chargement
+      setLoading(false); // Les données sont maintenant chargées
+    }, 500); // Ajustez le délai selon vos besoins
 
-    return () => clearTimeout(timer); // Nettoie le timer si le composant est démonté
+    return () => clearTimeout(timer); // Nettoyer le timer au démontage
   }, [newCategories]);
 
   return (
@@ -26,9 +28,9 @@ export default function Boutique({ newCategories }) {
         <h1 className="title">Boutique</h1>
       </div>
 
-      <div>
-        {categories === null ? (
-          <Loader />
+      <div className="content">
+        {loading ? (
+          <Loader /> // Affiche le loader pendant le chargement
         ) : (
           <NewCategories categories={categories} />
         )}
