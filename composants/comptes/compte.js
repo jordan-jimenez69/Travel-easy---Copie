@@ -10,7 +10,7 @@ export default function Compte() {
     useEffect(() => {
         const timer = setTimeout(() => {
             setLoading(false);
-        }, 500);
+        }, );
 
         return () => clearTimeout(timer);
     }, []);
