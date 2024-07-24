@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 import "@/styles/navbar.css";
 import "@/styles/footer.css";
+import "@/styles/loading.css";
 import "@/styles/success.css";
 import "@/styles/cancel.css";
 import "@/styles/home/accueil.css";
