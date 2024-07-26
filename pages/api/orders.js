@@ -24,6 +24,7 @@ export default async function handler(req, res) {
             for (const product of products) {
                 const productInfo = productsInfos.find(p => p._id.toString() === product._id);
                 const quantity = product.quantity;
+                const size = product.size;
 
                 if (quantity > 0 && productInfo) {
                     line_items.push({
@@ -37,7 +38,6 @@ export default async function handler(req, res) {
                 }
             }
 
-            // Créer la nouvelle commande avec userId
             const newOrder = new Order({
                 userId,
                 firstname,
@@ -46,7 +46,12 @@ export default async function handler(req, res) {
                 codePost,
                 adresse,
                 pays,
-                products: productIds,
+                products: products.map(p => ({
+                    _id: p._id,
+                    quantity: p.quantity,
+                    price: p.price,
+                    size: p.size || 'default'
+                })),
             });
             await newOrder.save();
 

@@ -12,11 +12,9 @@ const ProductDetail = ({ product }) => {
     const [sizes, setSizes] = useState([]);
 
     useEffect(() => {
-        // Vérifie si le produit a une propriété "Taille" et assurez-vous que c'est un tableau
         if (product.proprietes && Array.isArray(product.proprietes.Taille)) {
             setSizes(product.proprietes.Taille);
         } else if (product.proprietes && product.proprietes.Taille) {
-            // Si Taille n'est pas un tableau mais une seule valeur, convertissez-le en tableau
             setSizes([product.proprietes.Taille]);
         }
     }, [product]);
@@ -29,7 +27,7 @@ const ProductDetail = ({ product }) => {
         
         const cartItem = {
             ...product,
-            selectedSize
+            selectedSize: selectedSize || 'default'
         };
 
         addToCart(cartItem);
@@ -70,9 +68,7 @@ const ProductDetail = ({ product }) => {
                             </select>
                         </div>
                     )}
-                    <button
-                        className='button-product-detail'
-                        onClick={handleAddToCart}>Ajouter au panier</button>
+                    <button onClick={handleAddToCart}>Ajouter au Panier</button>
                 </div>
             </div>
         </>

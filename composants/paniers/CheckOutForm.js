@@ -12,7 +12,6 @@ const CheckoutForm = () => {
     const [adresse, setAdresse] = useState('');
     const [pays, setPays] = useState('');
 
-    // Fonction pour calculer le total
     const calculateTotal = () => {
         return cartProducts.reduce((total, product) => total + (product.price * product.quantity), 0);
     };
@@ -29,7 +28,8 @@ const CheckoutForm = () => {
             _id: product._id,
             name: product.name,
             price: product.price,
-            quantity: product.quantity
+            quantity: product.quantity,
+            size: product.selectedSize // Incluez la taille sélectionnée
         }));
 
         const orderData = {
