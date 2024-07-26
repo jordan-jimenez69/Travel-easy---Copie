@@ -24,7 +24,7 @@ const ProductDetail = ({ product }) => {
             alert('Veuillez sélectionner une taille.');
             return;
         }
-        
+
         const cartItem = {
             ...product,
             selectedSize: selectedSize || 'default'
@@ -68,7 +68,7 @@ const ProductDetail = ({ product }) => {
                             </select>
                         </div>
                     )}
-                    <button onClick={handleAddToCart}>Ajouter au Panier</button>
+                    <button className='button-product-detail' onClick={handleAddToCart}>Ajouter au Panier</button>
                 </div>
             </div>
         </>
