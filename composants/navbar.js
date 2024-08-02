@@ -16,9 +16,18 @@ export default function Navbar() {
         <h2>TravelEasy</h2>
       </div>
       <div className="menu-burger" onClick={toggleMenu}>
-        <div></div>
-        <div></div>
-        <div></div>
+        {menuOpen ? (
+          <div className="cross">
+            <div></div>
+            <div></div>
+          </div>
+        ) : (
+          <div className="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        )}
       </div>
       <div className={`liste-navbar ${menuOpen ? 'active' : ''}`}>
         <ul>

@@ -28,16 +28,15 @@
 
 .li-navbar-btnco a:hover {
   color: rgb(212, 135, 34);
-
 }
 
 .li-navbar-btnde a:hover {
   color: rgb(212, 135, 34);
 }
 
-.li-navbar-btnreg a:hover{
+.li-navbar-btnreg a:hover {
   color: rgb(212, 135, 34);
-} 
+}
 
 .liste-navbar ul a {
   margin-right: 20px;
@@ -55,16 +54,40 @@
   display: none;
   flex-direction: column;
   cursor: pointer;
+  position: relative;
+  width: 25px;
+  height: 20px;
 }
 
-.menu-burger div {
+.menu-burger .hamburger div,
+.menu-burger .cross div {
   width: 25px;
-  height: 3px;
+  height: 4px;
   background-color: white;
-  margin: 4px 0;
+  margin: 3px 0;
+  transition: 0.4s;
+}
+
+.menu-burger .cross div {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.menu-burger .cross div:first-child {
+  transform: rotate(45deg);
+}
+
+.menu-burger .cross div:last-child {
+  transform: rotate(-45deg);
 }
 
 @media (max-width: 768px) {
+  
+  .hamburger {
+
+  }
   .liste-navbar {
     display: none;
     position: absolute;
