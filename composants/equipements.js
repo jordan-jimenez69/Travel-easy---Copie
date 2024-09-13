@@ -16,31 +16,31 @@ export default function Equipement() {
                     <div className="equipement">
                         <h1>Chaussures</h1>
                         <img className="img-list-equip" src="chaussure.jpg" />
-                        <Link className="btn-equipement" href={"/categorie/6634eed756190cda6353ef11"}>Acheter maintenant</Link>
+                        <Link className="btn-equipement" href={"/categorie/6634eed756190cda6353ef11"}>Achetez maintenant</Link>
                     </div>
 
                     <div className="equipement">
                         <h1>Sac à dos</h1>
                         <img className="img-list-equip" src="sac.jpg" />
-                        <Link className="btn-equipement" href={"/categorie/6634ef6c56190cda6353ef1c"}>Acheter maintenant</Link>
+                        <Link className="btn-equipement" href={"/categorie/6634ef6c56190cda6353ef1c"}>Achetez maintenant</Link>
                     </div>
 
                     <div className="equipement">
                         <h1>Tentes</h1>
                         <img className="img-list-equip" src="tente.jpg" />
-                        <Link className="btn-equipement" href={"/categorie/6634eecc56190cda6353ef0e"}>Acheter maintenant</Link>
+                        <Link className="btn-equipement" href={"/categorie/6634eecc56190cda6353ef0e"}>Achetez maintenant</Link>
                     </div>
 
                     <div className="equipement">
                         <h1>Lit / Sac de couchage</h1>
                         <img className="img-list-equip" src="lit.jpg" />
-                        <Link className="btn-equipement" href={"/categorie/6634eefd56190cda6353ef14"}>Acheter maintenant</Link>
+                        <Link className="btn-equipement" href={"/categorie/6634eefd56190cda6353ef14"}>Achetez maintenant</Link>
                     </div>
 
                     <div className="equipement">
                         <h1>Vêtements</h1>
                         <img className="img-list-equip" src="blouson.jpg" />
-                        <Link className="btn-equipement" href={"/categorie/669e60757ef976adc14d938b"}>Acheter maintenant</Link>
+                        <Link className="btn-equipement" href={"/categorie/669e60757ef976adc14d938b"}>Achetez maintenant</Link>
                     </div>
 
                     <div className="equipement voir-plus">

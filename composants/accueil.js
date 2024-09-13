@@ -7,12 +7,12 @@ export default function Accueil() {
                 <div className="text-home">
                     <div className="titre-overlay">
                         <h1>Travel-Easy</h1> <br />
-                        <h6>Trouver et Préparé votre randonné facilement</h6>
+                        <h6>Trouvez et Préparez votre randonnée facilement</h6>
                     </div>
 
                     <div className="btn-home-contener">
                         <Link href={"/boutique"} className="btn-home">
-                            Commencer Maintenant !
+                            Commencez Maintenant !
                         </Link>
                     </div>
 
