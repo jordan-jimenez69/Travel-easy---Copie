@@ -1,6 +1,7 @@
 import { CartContext } from '@/contexts/CartContext';
 import UserContext from '@/contexts/UserContext';
 import React, { useContext, useState } from 'react';
+import { useRouter } from 'next/router'; // Pour gérer la redirection
 
 const CheckoutForm = () => {
     const { cartProducts, clearCart } = useContext(CartContext);
@@ -11,16 +12,31 @@ const CheckoutForm = () => {
     const [codePost, setCodePost] = useState('');
     const [adresse, setAdresse] = useState('');
     const [pays, setPays] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+    const [loading, setLoading] = useState(false);
+    const router = useRouter();
 
     const calculateTotal = () => {
         return cartProducts.reduce((total, product) => total + (product.price * product.quantity), 0);
     };
 
+    const validateForm = () => {
+        if (!firstname || !name || !ville || !codePost || !adresse || !pays) {
+            setErrorMessage('Tous les champs sont requis.');
+            return false;
+        }
+        if (cartProducts.length === 0) {
+            setErrorMessage('Votre panier est vide.');
+            return false;
+        }
+        setErrorMessage('');
+        return true;
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!firstname || !name || !ville || !codePost || !adresse || !pays || cartProducts.length === 0) {
-            console.error('Missing required fields');
+        if (!validateForm()) {
             return;
         }
 
@@ -41,8 +57,10 @@ const CheckoutForm = () => {
             pays,
             products,
             userId: user._id,
-            total: calculateTotal()
+            total: calculateTotal(),
         };
+
+        setLoading(true);
 
         try {
             const response = await fetch('/api/orders', {
@@ -55,20 +73,37 @@ const CheckoutForm = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                window.location.href = data.url;
+                window.location.href = data.url; // Redirection vers la page de paiement
                 clearCart();
             } else {
                 const errorData = await response.json();
-                console.error('Error creating order:', errorData);
+                setErrorMessage(`Erreur lors de la création de la commande: ${errorData.message}`);
             }
         } catch (error) {
-            console.error('Error creating order:', error);
+            setErrorMessage('Une erreur est survenue lors de la création de la commande.');
+        } finally {
+            setLoading(false);
         }
     };
+
+    // Si l'utilisateur n'est pas connecté, affichez un message ou redirigez vers la page de connexion
+    if (!user) {
+        return (
+            <div className="checkout-container">
+                <h2>Vous n'êtes pas connecté</h2>
+                <p>Pour procéder au paiement, veuillez vous connecter ou créer un compte.</p>
+                <div className="checkout-noregi">
+                    <button className="btn btn-primary" onClick={() => router.push('/register')}>Créer un compte</button>
+                    <button className="btn btn-primary" onClick={() => router.push('/login')}>Se connecter</button>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="checkout-container">
             <h2>Vos Informations</h2>
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
             <form onSubmit={handleSubmit}>
                 <div className="checkout-form-group">
                     <label htmlFor="firstname">Prénom:</label>
@@ -130,9 +165,11 @@ const CheckoutForm = () => {
                         required
                     />
                 </div>
-                <button type="submit" className="register-btn btn-primary">Continuer vers paiement</button>
+                <button type="submit" className="register-btn btn-primary" disabled={loading}>
+                    {loading ? 'Traitement...' : 'Continuer vers paiement'}
+                </button>
             </form>
-            <h3 className='total-prod-quant'>Total: {calculateTotal().toFixed(2)}€</h3> {}
+            <h3 className='total-prod-quant'>Total: {calculateTotal().toFixed(2)}€</h3>
         </div>
     );
 };

@@ -174,6 +174,12 @@
     transition: border-color 0.3s ease;
   }
 
+  .checkout-noregi {
+    display: flex;
+    margin-top: 8%;
+    gap: 0.8rem;
+  }
+
 @media (max-width: 1520px) {
     .cart-item {
         display: flex;
