@@ -1,4 +1,5 @@
 import NewCategories from "@/composants/boutiques/NewCategories";
+import ChatbotPopup from "@/composants/chatbot/Chatbotpop";
 import Footer from "@/composants/footer";
 import Navbar from "@/composants/navbar";
 import { mongooseConnect } from "@/lib/mongoose";
@@ -22,6 +23,8 @@ export default function boutique({ newCategories }) {
       </div>
 
       <Footer />
+
+      <ChatbotPopup />
 
     </>
   );

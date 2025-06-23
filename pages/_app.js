@@ -12,6 +12,7 @@ import "@/styles/compte/login.css";
 import "@/styles/compte/register.css";
 import "@/styles/compte/compte_user.css";
 import "@/styles/paniers/panier.css";
+import "@/styles/chat.css"; 
 
 import { UserProvider } from '@/contexts/UserContext';
 import { CartProvider } from '@/contexts/CartContext';
