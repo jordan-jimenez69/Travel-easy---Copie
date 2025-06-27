@@ -1,7 +1,7 @@
 import { CartContext } from '@/contexts/CartContext';
 import UserContext from '@/contexts/UserContext';
-import React, { useContext, useState } from 'react';
-import { useRouter } from 'next/router'; // Pour gérer la redirection
+import React, { useContext, useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 const CheckoutForm = () => {
     const { cartProducts, clearCart } = useContext(CartContext);
@@ -14,7 +14,28 @@ const CheckoutForm = () => {
     const [pays, setPays] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [loading, setLoading] = useState(false);
+    const [isAutoFilled, setIsAutoFilled] = useState(false);
     const router = useRouter();
+
+    // Fonction pour remplir automatiquement le formulaire
+    const autoFillFromUser = () => {
+        if (user) {
+            console.log('Données user:', user); // Pour debug
+            setFirstname(user.firstname || user.prenom || '');
+            setName(user.name || user.nom || user.lastName || '');
+            setVille(user.ville || user.city || '');
+            setCodePost(user.codePost || user.codePostal || user.postalCode || '');
+            setAdresse(user.adresse || user.address || '');
+            setPays(user.pays || user.country || 'France');
+        }
+    };
+
+    // Remplissage automatique au chargement du composant
+    useEffect(() => {
+        if (user && !firstname && !name) { // Ne remplit que si les champs sont vides
+            autoFillFromUser();
+        }
+    }, [user]);
 
     const calculateTotal = () => {
         return cartProducts.reduce((total, product) => total + (product.price * product.quantity), 0);
@@ -45,7 +66,7 @@ const CheckoutForm = () => {
             name: product.name,
             price: product.price,
             quantity: product.quantity,
-            size: product.selectedSize // Incluez la taille sélectionnée
+            size: product.selectedSize
         }));
 
         const orderData = {
@@ -73,7 +94,7 @@ const CheckoutForm = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                window.location.href = data.url; // Redirection vers la page de paiement
+                window.location.href = data.url;
                 clearCart();
             } else {
                 const errorData = await response.json();
@@ -86,15 +107,19 @@ const CheckoutForm = () => {
         }
     };
 
-    // Si l'utilisateur n'est pas connecté, affichez un message ou redirigez vers la page de connexion
+    // Si l'utilisateur n'est pas connecté
     if (!user) {
         return (
             <div className="checkout-container">
                 <h2>Vous n'êtes pas connecté</h2>
                 <p>Pour procéder au paiement, veuillez vous connecter ou créer un compte.</p>
                 <div className="checkout-noregi">
-                    <button className="btn btn-primary" onClick={() => router.push('/register')}>Créer un compte</button>
-                    <button className="btn btn-primary" onClick={() => router.push('/login')}>Se connecter</button>
+                    <button className="btn btn-primary" onClick={() => router.push('/register')}>
+                        Créer un compte
+                    </button>
+                    <button className="btn btn-primary" onClick={() => router.push('/login')}>
+                        Se connecter
+                    </button>
                 </div>
             </div>
         );
@@ -103,7 +128,11 @@ const CheckoutForm = () => {
     return (
         <div className="checkout-container">
             <h2>Vos Informations</h2>
+            
+
+
             {errorMessage && <p className="error-message">{errorMessage}</p>}
+            
             <form onSubmit={handleSubmit}>
                 <div className="checkout-form-group">
                     <label htmlFor="firstname">Prénom:</label>
@@ -113,8 +142,12 @@ const CheckoutForm = () => {
                         value={firstname}
                         onChange={(e) => setFirstname(e.target.value)}
                         required
+                        style={{
+                            transition: 'background-color 0.3s ease'
+                        }}
                     />
                 </div>
+                
                 <div className="checkout-form-group">
                     <label htmlFor="name">Nom:</label>
                     <input
@@ -123,8 +156,12 @@ const CheckoutForm = () => {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         required
+                        style={{
+                            transition: 'background-color 0.3s ease'
+                        }}
                     />
                 </div>
+                
                 <div className="checkout-form-group">
                     <label htmlFor="ville">Ville:</label>
                     <input
@@ -133,8 +170,12 @@ const CheckoutForm = () => {
                         value={ville}
                         onChange={(e) => setVille(e.target.value)}
                         required
+                        style={{
+                            transition: 'background-color 0.3s ease'
+                        }}
                     />
                 </div>
+                
                 <div className="checkout-form-group">
                     <label htmlFor="codePost">Code Postal:</label>
                     <input
@@ -143,8 +184,12 @@ const CheckoutForm = () => {
                         value={codePost}
                         onChange={(e) => setCodePost(e.target.value)}
                         required
+                        style={{
+                            transition: 'background-color 0.3s ease'
+                        }}
                     />
                 </div>
+                
                 <div className="checkout-form-group">
                     <label htmlFor="adresse">Adresse Postale:</label>
                     <input
@@ -153,8 +198,12 @@ const CheckoutForm = () => {
                         value={adresse}
                         onChange={(e) => setAdresse(e.target.value)}
                         required
+                        style={{
+                            transition: 'background-color 0.3s ease'
+                        }}
                     />
                 </div>
+                
                 <div className="checkout-form-group">
                     <label htmlFor="pays">Pays:</label>
                     <input
@@ -163,12 +212,17 @@ const CheckoutForm = () => {
                         value={pays}
                         onChange={(e) => setPays(e.target.value)}
                         required
+                        style={{
+                            transition: 'background-color 0.3s ease'
+                        }}
                     />
                 </div>
+                
                 <button type="submit" className="register-btn btn-primary" disabled={loading}>
                     {loading ? 'Traitement...' : 'Continuer vers paiement'}
                 </button>
             </form>
+            
             <h3 className='total-prod-quant'>Total: {calculateTotal().toFixed(2)}€</h3>
         </div>
     );

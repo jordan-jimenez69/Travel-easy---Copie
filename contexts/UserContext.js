@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
+import { set } from 'mongoose';
 
 const UserContext = createContext();
 
@@ -69,7 +70,7 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, orders, login, logout }}>
+    <UserContext.Provider value={{ user, orders, login, logout ,setUser }}>
       {children}
     </UserContext.Provider>
   );
