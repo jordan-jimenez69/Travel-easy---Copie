@@ -82,65 +82,65 @@ export default function Compte() {
             <div className="container-compte">
                 <h1 className="title">Mon Compte</h1>
                 <p className="welcome-text">Bienvenue, {user.firstname} {user.name}</p>
-    
-             <div className="container-compte">
-  <h2 className="ordersTitle">Vos informations</h2>
-  {isEditing ? (
-    
-    <div>
-      <label>
-        Prénom :
-        <input type="text" name="firstname" value={formData.firstname} onChange={handleInputChange} />
-      </label>
-      <label>
-        Nom :
-        <input type="text" name="name" value={formData.name} onChange={handleInputChange} />
-      </label>
-      <label>
-        Adresse-mail :
-        <input type="email" name="email" value={formData.email} onChange={handleInputChange} />
-      </label>
-      <label>
-        Adresse :
-        <input type="text" name="adresse" value={formData.adresse} onChange={handleInputChange} />
-      </label>
-      <label>
-        Ville :
-        <input type="text" name="ville" value={formData.ville} onChange={handleInputChange} />
-      </label>
-      <label>
-        Code postal :
-        <input type="text" name="codePost" value={formData.codePost} onChange={handleInputChange} />
-      </label>
-      <label>
-        Pays :
-        <input type="text" name="pays" value={formData.pays} onChange={handleInputChange} />
-      </label>
-      <label>
-        Mot de passe (laisser vide si inchangé) :
-        <input type="password" name="password" value={formData.password} onChange={handleInputChange} />
-      </label>
-      <div className="btn-container">
-        <button className="btn" onClick={saveChanges}>Enregistrer</button>
-        <button className="cancel-btn" onClick={() => setIsEditing(false)}>Annuler</button>
-      </div>
-    </div>
-  ) : (
-         <div>
-                    <p><strong>Prénom :</strong> {user.firstname}</p>
-                    <p><strong>Nom :</strong> {user.name}</p>
-                    <p><strong>Adresse-mail :</strong> {user.email}</p>
-                    <p><strong>Adresse :</strong> {user.adresse}</p>
-                    <p><strong>Ville :</strong> {user.ville}</p>
-                    <p><strong>Code postal :</strong> {user.codePost}</p>
-                    <p><strong>Pays :</strong> {user.pays}</p>
-      <button className="btn" onClick={() => setIsEditing(true)}>Modifier</button>
-          </div>
-  )}
 
-                 </div>
+                <div className="container-compte">
+                    <h2 className="ordersTitle">Vos informations</h2>
+                    {isEditing ? (
 
-    
+                        <div>
+                            <label>
+                                Prénom :
+                                <input type="text" name="firstname" value={formData.firstname} onChange={handleInputChange} />
+                            </label>
+                            <label>
+                                Nom :
+                                <input type="text" name="name" value={formData.name} onChange={handleInputChange} />
+                            </label>
+                            <label>
+                                Adresse-mail :
+                                <input type="email" name="email" value={formData.email} onChange={handleInputChange} />
+                            </label>
+                            <label>
+                                Adresse :
+                                <input type="text" name="adresse" value={formData.adresse} onChange={handleInputChange} />
+                            </label>
+                            <label>
+                                Ville :
+                                <input type="text" name="ville" value={formData.ville} onChange={handleInputChange} />
+                            </label>
+                            <label>
+                                Code postal :
+                                <input type="text" name="codePost" value={formData.codePost} onChange={handleInputChange} />
+                            </label>
+                            <label>
+                                Pays :
+                                <input type="text" name="pays" value={formData.pays} onChange={handleInputChange} />
+                            </label>
+                            <label>
+                                Mot de passe (laisser vide si inchangé) :
+                                <input type="password" name="password" value={formData.password} onChange={handleInputChange} />
+                            </label>
+                            <div className="btn-container">
+                                <button className="btn" onClick={saveChanges}>Enregistrer</button>
+                                <button className="cancel-btn" onClick={() => setIsEditing(false)}>Annuler</button>
+                            </div>
+                        </div>
+                    ) : (
+                        <div>
+                            <p><strong>Prénom :</strong> {user.firstname}</p>
+                            <p><strong>Nom :</strong> {user.name}</p>
+                            <p><strong>Adresse-mail :</strong> {user.email}</p>
+                            <p><strong>Adresse :</strong> {user.adresse}</p>
+                            <p><strong>Ville :</strong> {user.ville}</p>
+                            <p><strong>Code postal :</strong> {user.codePost}</p>
+                            <p><strong>Pays :</strong> {user.pays}</p>
+                            <button className="btn" onClick={() => setIsEditing(true)}>Modifier</button>
+                        </div>
+                    )}
+
+                </div>
+
+
                 <h2 className="ordersTitle">Mes Commandes</h2>
                 {orders.length === 0 ? (
                     <p>Aucune commande trouvée.</p>
@@ -168,5 +168,4 @@ export default function Compte() {
             </div>
         </section>
     );
-    
 }
