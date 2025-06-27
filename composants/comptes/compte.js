@@ -121,8 +121,8 @@ export default function Compte() {
                                 <input type="password" name="password" value={formData.password} onChange={handleInputChange} />
                             </label>
                             <div className="btn-container">
-                                <button className="btn" onClick={saveChanges}>Enregistrer</button>
-                                <button className="cancel-btn" onClick={() => setIsEditing(false)}>Annuler</button>
+                                <button className="btn-save-compte" onClick={saveChanges}>Enregistrer</button>
+                                <button className="cancel-btn-compte" onClick={() => setIsEditing(false)}>Annuler</button>
                             </div>
                         </div>
                     ) : (
@@ -134,7 +134,7 @@ export default function Compte() {
                             <p><strong>Ville :</strong> {user.ville}</p>
                             <p><strong>Code postal :</strong> {user.codePost}</p>
                             <p><strong>Pays :</strong> {user.pays}</p>
-                            <button className="btn" onClick={() => setIsEditing(true)}>Modifier</button>
+                            <button className="btn-save-compte" onClick={() => setIsEditing(true)}>Modifier</button>
                         </div>
                     )}
 
